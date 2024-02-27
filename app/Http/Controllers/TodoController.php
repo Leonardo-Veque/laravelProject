@@ -15,7 +15,9 @@ class TodoController extends Controller
      */
     public function index()
     {
-        return view('todo.todo');
+        $todos = Todo::all();
+
+        return view('todo.index')->with('todos', $todos);
     }
 
     /**
@@ -23,6 +25,7 @@ class TodoController extends Controller
      */
     public function create()
     {
+        return view("todo.todo_form");
     }
 
     /**
@@ -52,11 +55,7 @@ class TodoController extends Controller
             return Redirect::back()->withErrors($ex->getMessage())->withInput();
         }
 
-        $todos = Todo::all();
-
-        session(['todos' => $todos]);
-
-        return Redirect::route('dashboard')->withSuccess("Notas salvada com Sucesso!!");
+        return Redirect::route('todo.index')->withSuccess("Notas salvada com Sucesso!!");
     }
 
     /**
@@ -64,7 +63,7 @@ class TodoController extends Controller
      */
     public function show(Todo $todo)
     {
-        //
+        return view("todo.todo_form")->with(["todo" => $todo, "show" => true]);
     }
 
     /**
@@ -72,7 +71,7 @@ class TodoController extends Controller
      */
     public function edit(Todo $todo)
     {
-        //
+        return view("todo.todo_form")->with(["todo" => $todo]);
     }
 
     /**
