@@ -18,21 +18,6 @@
                 </div>
             </div>
 
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mt-5 grid gap-4 grid-cols-4 ">
-
-                @if (session('todos'))
-
-                    @foreach (session('todos') as $todo)
-                        <div
-                            class=" bg-zinc-500 scroll-px-0.5 my-3 mx-3 flex flex-col justify-between whitespace-pre-wrap min-h-32 py-4 px-4 sm:rounded-lg text-zinc-300">
-                            <h4>{{ $todo->title }}</h4>
-                            <p>{{ $todo->body }}</p>
-                            <x-heroicon-o-trash class="w-8" />
-                        </div>
-                    @endforeach
-
-                @endif
-            </div>
         </div>
     </div>
 </x-app-layout>

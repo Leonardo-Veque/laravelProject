@@ -79,8 +79,14 @@ class TodoController extends Controller
      */
     public function update(Request $request, Todo $todo)
     {
-        //
+        $todo->update([
+            'title' => $request->input('title'),
+            'body' => $request->input('body'),
+        ]);
+
+        return Redirect::route('todo.index')->withSuccess("Notas editadas!!");
     }
+
 
     /**
      * Remove the specified resource from storage.
